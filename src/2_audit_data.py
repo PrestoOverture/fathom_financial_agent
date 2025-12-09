@@ -56,7 +56,6 @@ def audit_question(openai: OpenAI, question: str, answer: str, evidence: str) ->
         response_format=QuestionAudit
     )
     return response.choices[0].message.parsed
-            
 
 def run_audit(openai: OpenAI, df: DataFrame) -> DataFrame:
     nan_rows = df['question_reasoning'].isna()
