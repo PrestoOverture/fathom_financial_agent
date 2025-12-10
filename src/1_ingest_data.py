@@ -24,7 +24,7 @@ if __name__ == "__main__":
     dataset_id = "PatronusAI/financebench"
     output_dir_raw = "data/raw"
     output_path_raw = os.path.join(output_dir_raw, "financebench_raw.csv")
-
+    
     if not os.path.exists(output_dir_raw):
         os.makedirs(output_dir_raw)
 
