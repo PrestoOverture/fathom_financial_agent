@@ -31,10 +31,6 @@ BATCHES_INPUT_DIR = ROOT_DIR / "data" / "train" / "batches_input"
 BATCHES_OUTPUT_DIR = ROOT_DIR / "data" / "train" / "batches_output"
 MAX_BATCH_TOKENS = 85000
 
-def load_data() -> pd.DataFrame:
-    df = pd.read_csv(INPUT_FILE_PATH)
-    return df
-
 def split_train_test(df: DataFrame, n_test: int) -> Tuple[DataFrame, DataFrame]:
     df_shuffled = df.sample(frac=1, random_state=42).reset_index(drop=True)
     test_df = df_shuffled.iloc[:n_test].copy()
@@ -72,7 +68,7 @@ def save_jsonl(test_df: DataFrame) -> None:
             f.write(json.dumps(record, ensure_ascii=False) + "\n")
         
 def split_and_save() -> None:
-    df = load_data()
+    df = pd.read_csv(INPUT_FILE_PATH)
     train_df, test_df = split_train_test(df, n_test=15)
 
     TRAIN_CSV_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -86,7 +82,8 @@ def split_and_save() -> None:
     print(f"Test data {len(test_df)} rows saved to {TEST_CSV_PATH}")
     print(f"Test JSONL {len(test_df)} rows saved to {TEST_JSONL_PATH}")
 
-def generate_batch_input(train_df: DataFrame) -> None:
+def generate_batch_input_and_save() -> None:
+    train_df = pd.read_csv(TRAIN_CSV_PATH)
     cols_to_keep = ["financebench_id", "question", "answer", "evidence"]
     for col in cols_to_keep:
         if col not in train_df.columns:
@@ -151,39 +148,20 @@ def generate_batch_input(train_df: DataFrame) -> None:
 
     print(f"{len(train_df)} traces saved to {BATCH_INPUT_PATH}")
 
-def generate_batch_input_and_save() -> None:
-    train_df = pd.read_csv(TRAIN_CSV_PATH)
-    generate_batch_input(train_df)
-    print(f"Batch input saved to {BATCH_INPUT_PATH}")
-
 def estimate_request_tokens(record: dict, encoder: tiktoken.Encoding) -> int:
-    """Approximate tokens per request: sum message content tokens + reserved max_tokens."""
     body = record.get("body", {})
     messages = body.get("messages", [])
-    text_parts: list[str] = []
-
-    for msg in messages:
-        content = msg.get("content", "")
-        if isinstance(content, list):
-            for part in content:
-                if isinstance(part, str):
-                    text_parts.append(part)
-                elif isinstance(part, dict) and "text" in part:
-                    text_parts.append(str(part["text"]))
-        else:
-            text_parts.append(str(content))
-
-    input_tokens = len(encoder.encode("".join(text_parts)))
+    
+    input_tokens = len(encoder.encode("".join(str(msg.get("content", "")) for msg in messages)))
     max_tokens = int(body.get("max_tokens", 0) or 0)
+    
     return input_tokens + max_tokens
-
 
 def split_batch_file(
     batch_file_path: Path,
     output_dir: Path,
     max_batch_tokens: int = MAX_BATCH_TOKENS,
 ) -> list[Path]:
-    """Split a JSONL batch file into multiple chunk files under the token cap."""
     if not batch_file_path.exists():
         raise FileNotFoundError(f"{batch_file_path} does not exist.")
 
@@ -199,12 +177,6 @@ def split_batch_file(
         for line in f:
             record = json.loads(line)
             cost = estimate_request_tokens(record, encoder)
-
-            if cost > max_batch_tokens:
-                raise ValueError(
-                    f"Single request {record.get('custom_id')} needs {cost} tokens, "
-                    f"exceeds chunk limit {max_batch_tokens}"
-                )
 
             if current_tokens + cost > max_batch_tokens and current_chunk:
                 chunk_path = save_chunk(output_dir, chunk_index, current_chunk)
@@ -309,7 +281,7 @@ def load_train_index() -> dict[str, dict]:
 
 def convert_batch_output() -> None:
     train_index = load_train_index()
-    instruction = "You are a financial analyst. Answer the user's question based on the context provided. Show your reasoning steps."
+    instruction = "You are a financial analyst. Answer the user's question based on the evidence provided. Show your reasoning steps."
     FINE_TUNE_JSONL_PATH.parent.mkdir(parents=True, exist_ok=True)
     processed = 0
 
@@ -318,15 +290,15 @@ def convert_batch_output() -> None:
         raise ValueError(f"No batch output files found in {BATCHES_OUTPUT_DIR}")
 
     with FINE_TUNE_JSONL_PATH.open("w", encoding="utf-8") as f_out:
-        for out_file in output_files:
-            print(f"Converting {out_file}...")
-            with out_file.open("r", encoding="utf-8") as f_in:
+        for output_file in output_files:
+            print(f"Converting {output_file}...")
+            with output_file.open("r", encoding="utf-8") as f_in:
                 for line in f_in:
                     record = json.loads(line)
                     if record.get("error"):
-                        raise ValueError(f"Error in batch output {out_file}: {record['error']}")
+                        raise ValueError(f"Error in batch output {output_file}: {record['error']}")
                     if "response" not in record or "body" not in record["response"]:
-                        raise ValueError(f"Batch output record missing response body in {out_file}")
+                        raise ValueError(f"Batch output record missing response body in {output_file}")
 
                     custom_id = record["custom_id"]
                     financebench_id = custom_id.replace("fb-trace-", "")
@@ -389,8 +361,7 @@ def main() -> None:
     if args.command == "split":
         split_and_save()
     elif args.command == "generate-batch-input":
-        train_df = pd.read_csv(TRAIN_CSV_PATH)
-        generate_batch_input(train_df)
+        generate_batch_input_and_save()
     elif args.command == "chunk-batch-input":
         batch_file = args.batch_file or BATCH_INPUT_PATH
         max_batch_tokens = args.max_batch_tokens or MAX_BATCH_TOKENS
