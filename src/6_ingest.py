@@ -27,7 +27,7 @@ def get_file_hash(file_path: Path) -> str:
             sha256.update(chunk)
     return sha256.hexdigest()
 
-def parse_pdf(file_path: Path) -> list[Document]:
+def parse_pdf(file_path: Path) -> list[Document]: 
     file_hash = get_file_hash(file_path)
     cache_path = CACHE_DIR / f"{file_hash}.json"
 
@@ -40,6 +40,9 @@ def parse_pdf(file_path: Path) -> list[Document]:
         print(f"Parsing PDF {file_path}")
         parser = LlamaParse(result_type="markdown", verbose=True, language="en")
         documents = parser.load_data(str(file_path))
+        for i, doc in enumerate(documents):
+            doc.metadata["doc_name"] = file_path.name
+            doc.metadata["page_number"] = i + 1
         cache_data = [{"text": doc.text, "metadata": doc.metadata} for doc in documents]
         with open(cache_path, "w") as f:
             json.dump(cache_data, f, indent=2, default=str)
