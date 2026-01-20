@@ -8,7 +8,7 @@ class AgentState(BaseModel):
     # RAG data
     retrievd_nodes: List[dict] = Field(default_factory=list, 
         description="Raw chunks retrieved from the Vector Store (text + metadata).")
-    context: str = Field(default="", description="Thr formatted string context passed to LLM.")
+    evidence: str = Field(default="", description="The formatted string evidence passed to LLM.")
     
     # outputs
     reasoning_logs: List[str] = Field(default_factory=list, description="Captured chain-of-thought steps from the <reasoning> blocks.")

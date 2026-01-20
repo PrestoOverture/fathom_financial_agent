@@ -36,7 +36,7 @@ def retrieve(state: AgentState):
     nodes = retriever.retrieve(state.question)
 
     retrieved_data = []
-    contexts = []
+    evidences = []
     for node in nodes: 
         node_content = node.node.get_content()
         node_metadata = node.node.metadata
@@ -49,10 +49,10 @@ def retrieve(state: AgentState):
         })
 
         doc_name = node_metadata.get("doc_name", "Unknown")
-        contexts.append(f"Source: {doc_name}\nContent: {node_content}")
+        evidences.append(f"Source: {doc_name}\nContent: {node_content}")
     
-    full_context = "\n\n---\n\n".join(contexts)
+    full_evidence = "\n\n---\n\n".join(evidences)
     return {
         "retrieved_nodes": retrieved_data,
-        "context": full_context,
+        "evidence": full_evidence,
     }

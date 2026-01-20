@@ -35,7 +35,7 @@ def check_table_integrity():
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
     retriever = index.as_retriever(similarity_top_k=5)
 
-    query = "Total Assets"
+    query = "Total gross sqaure feet at beginning of each quarter"
     print(f"Querying: {query}")
     results = retriever.retrieve(query)
 
