@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph, START, END
 from graph.nodes.retrieve import retrieve
 from graph.nodes.reason import reason
 from graph.state import AgentState
-from graph.verify import verify_math_node
+from graph.nodes.verify import verify_math_node
 
 def create_graph():
     workflow = StateGraph(AgentState)

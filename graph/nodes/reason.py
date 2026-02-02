@@ -1,68 +1,91 @@
+import json
 import os
 import re
-import requests
+
+import httpx
 from dotenv import load_dotenv
+
 from graph.state import AgentState
+from langgraph.config import get_stream_writer
 
 load_dotenv(override=True)
 
-# MODAL_LLM_ENDPOINT = os.environ.get(
-#     "MODAL_LLM_ENDPOINT",
-#     "https://prestooverture--fathom-llama32-3b-llm-generate.modal.run/generate",
-# )
+# non-streaming endpoint
+MODAL_LLM_ENDPOINT = os.environ.get(
+    "MODAL_LLM_ENDPOINT",
+    "https://prestooverture--fathom-llama32-3b-llm-generate.modal.run",
+)
 
-MODAL_LLM_ENDPOINT = "https://prestooverture--fathom-llama32-3b-llm-generate.modal.run"
+# token streaming endpoint (JSONL)
+MODAL_STREAM_ENDPOINT = os.environ.get(
+    "MODAL_STREAM_ENDPOINT",
+    "https://prestooverture--fathom-llama32-3b-llm-generate-stream.modal.run",
+)
 
-def extract_xml_tag(text: str, tag: str) -> str:
-    # pattern = f"<{tag}>(.*?)</{tag}>"
-    # match = re.search(pattern, text, re.DOTALL)
-    # return match.group(1).strip() if match else ""
-    pattern = rf"<{tag}\s*>(.*?)</{tag}\s*>"
-    matches = re.findall(pattern, text, flags=re.DOTALL | re.IGNORECASE)
-    return matches[-1].strip() if matches else ""
 
-def call_modal_llm(prompt: str) -> str:
-    payload = {
-        "prompt": prompt,
-        "max_new_tokens": 1024,
-        "temperature": 0.1,
-        "do_sample": False,
-    }
+def extract_section(text: str, label: str) -> str:
+    pattern = rf"{label}\s*:\s*(.*?)(?=\n\s*(?:Reasoning|Answer)\s*:|$)"
+    match = re.search(pattern, text, flags=re.DOTALL | re.IGNORECASE)
+    return match.group(1).strip() if match else ""
 
-    response = requests.post(MODAL_LLM_ENDPOINT, json=payload, timeout=120)
-    response.raise_for_status()
 
-    return response.json()["text"]
-
-def reason(state: AgentState):
-    print(f"Reasoning about question: {state.question}")
+async def reason(state: AgentState) -> dict:
     prompt = f"""
-        You are a financial analyst. Answer the user's question based on the context provided. 
+        You are a financial analyst. Answer the user's question based on the context provided.
         You MUST use this exact format:
-        <reasoning>
+        Reasoning:
         1. ...
         2. ...
         ...
-        </reasoning>
-        <answer>
-        Final answer here.
-        </answer>
+        Answer:
+        ...
 
-        ### Input:
-        Context: 
+        Context:
         {state.evidence}
 
-        Question: 
+        Question:
         {state.question}
+
+        Your should only output the Reasoning and Answer blocks, no other text.
     """
 
-    text = call_modal_llm(prompt)
+    # get stream writer for custom events
+    writer = get_stream_writer()
 
-    reasoning = extract_xml_tag(text, "reasoning")
-    answer = extract_xml_tag(text, "answer")
+    accumulated_text = ""
+
+    # async streaming from Modal
+    async with httpx.AsyncClient(timeout=120.0) as client:  
+        async with client.stream(
+            "POST",
+            MODAL_STREAM_ENDPOINT,
+            json={
+                "prompt": prompt,
+                "max_new_tokens": 1024,
+                "temperature": 0.1,
+                "do_sample": False,
+            },
+        ) as response:
+            response.raise_for_status()
+            async for line in response.aiter_lines():
+                if not line:
+                    continue
+                try:
+                    chunk = json.loads(line)
+                    delta = chunk.get("delta", "")
+                    accumulated_text += delta
+
+                    # emit custom event for SSE streaming
+                    writer({"event": "reasoning_delta", "delta": delta})
+                except json.JSONDecodeError:
+                    continue
+
+    # parse reasoning and answer
+    reasoning = extract_section(accumulated_text, "Reasoning")
+    answer = extract_section(accumulated_text, "Answer")
 
     return {
         "answer": answer,
         "reasoning_logs": reasoning,
-        "raw_output": text,
+        "raw_output": accumulated_text,
     }

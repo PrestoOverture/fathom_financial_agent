@@ -12,3 +12,7 @@ wheels/
 # .gitignore content
 .env
 docs/
+.gitignore
+CLAUDE.md
+.claude/
+.cursor/

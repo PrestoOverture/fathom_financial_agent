@@ -2,6 +2,7 @@ import ast
 import operator
 from typing import Optional
 
+# convert messy financial strings into usable numbers
 def clean_number(num_str: str) -> Optional[float]:
     if not num_str:
         return None

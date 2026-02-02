@@ -6,7 +6,7 @@ class AgentState(BaseModel):
     question: str = Field(..., description="The user's original financial query.")
 
     # RAG data
-    retrievd_nodes: List[dict] = Field(default_factory=list, 
+    retrieved_nodes: List[dict] = Field(default_factory=list, 
         description="Raw chunks retrieved from the Vector Store (text + metadata).")
     evidence: str = Field(default="", description="The formatted string evidence passed to LLM.")
     
