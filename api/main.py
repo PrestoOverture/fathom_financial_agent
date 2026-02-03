@@ -1,5 +1,6 @@
 import uuid
 from contextlib import asynccontextmanager
+import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
@@ -13,9 +14,15 @@ async def lifespan(app: FastAPI):
     yield
 
 app = FastAPI(title="Fathom Financial Agent API", version="1.0.0", lifespan=lifespan)
+
+allowed_origins_env = os.getenv("CORS_ALLOW_ORIGINS", "")
+allowed_origins = [o.strip() for o in allowed_origins_env.split(",") if o.strip()]
+if not allowed_origins:
+    allowed_origins = ["http://localhost:3000", "http://localhost:5173"]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:5173"],
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST"],
     allow_headers=["*"],

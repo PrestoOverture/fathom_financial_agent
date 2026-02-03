@@ -38,27 +38,36 @@ async def stream_graph_sse(
 
                     if node_name == "retrieve":
                         nodes = output.get("retrieved_nodes", [])
-                        sources = list(
-                            set(
-                                n.get("metadata", {}).get("doc_name", "unknown")
-                                for n in nodes
-                            )
-                        )
+                        # Build chunks with content for frontend display
+                        chunks = [
+                            {
+                                "doc_name": n.get("metadata", {}).get("doc_name", "Unknown"),
+                                "content": n.get("text", ""),
+                                "score": n.get("score", 0.0),
+                            }
+                            for n in nodes
+                        ]
                         yield format_sse(
                             "retrieve_update",
                             {
                                 "request_id": request_id,
                                 "source_count": len(nodes),
-                                "sources": sources,
+                                "chunks": chunks,
                             },
                         )
 
                     elif node_name == "reason":
                         answer = output.get("answer", "")
+                        reasoning_logs = output.get("reasoning_logs", "")
                         final_state["answer"] = answer
+                        final_state["reasoning_logs"] = reasoning_logs
                         yield format_sse(
                             "reason_update",
-                            {"request_id": request_id, "answer": answer},
+                            {
+                                "request_id": request_id,
+                                "answer": answer,
+                                "reasoning_logs": reasoning_logs,
+                            },
                         )
 
                     elif node_name == "verify":

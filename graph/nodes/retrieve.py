@@ -1,3 +1,4 @@
+import ast
 import os
 from dotenv import load_dotenv
 from llama_index.core import VectorStoreIndex, Settings
@@ -8,6 +9,33 @@ from sqlalchemy import make_url
 
 load_dotenv(override=True)
 Settings.embed_model = OpenAIEmbedding(model="text-embedding-3-small")
+
+
+def parse_node_content(raw_content: str) -> tuple[str, dict]:
+    """
+    Parse node content which may be a serialized dict with 'text' key.
+    Returns (text_content, extracted_metadata).
+    """
+    content = raw_content
+    extracted_metadata = {}
+
+    # Check if content is a serialized dictionary
+    if raw_content.strip().startswith("{") and "'text':" in raw_content:
+        try:
+            node_dict = ast.literal_eval(raw_content)
+            if isinstance(node_dict, dict):
+                # Extract the actual text
+                if "text" in node_dict:
+                    content = node_dict["text"]
+                # Extract metadata from the dict if present
+                if "metadata" in node_dict and isinstance(node_dict["metadata"], dict):
+                    extracted_metadata = node_dict["metadata"]
+        except (ValueError, SyntaxError):
+            # If parsing fails, use raw content
+            pass
+
+    return content, extracted_metadata
+
 
 def retrieve(state: AgentState):
     print(f"Retrieving question: {state.question}")
@@ -37,20 +65,26 @@ def retrieve(state: AgentState):
 
     retrieved_data = []
     evidences = []
-    for node in nodes: 
-        node_content = node.node.get_content()
-        node_metadata = node.node.metadata
+    for node in nodes:
+        raw_content = node.node.get_content()
+        node_metadata = node.node.metadata or {}
         score = node.score if node.score else 0.0
 
+        # Parse content (may be serialized dict)
+        text_content, extracted_metadata = parse_node_content(raw_content)
+
+        # Merge metadata: prefer node.metadata, fall back to extracted
+        merged_metadata = {**extracted_metadata, **node_metadata}
+        doc_name = merged_metadata.get("doc_name", "Unknown")
+
         retrieved_data.append({
-            "text": node_content,
-            "metadata": node_metadata,
+            "text": text_content,
+            "metadata": merged_metadata,
             "score": score,
         })
 
-        doc_name = node_metadata.get("doc_name", "Unknown")
-        evidences.append(f"Source: {doc_name}\nContent: {node_content}")
-    
+        evidences.append(f"Source: {doc_name}\nContent: {text_content}")
+
     full_evidence = "\n\n---\n\n".join(evidences)
     return {
         "retrieved_nodes": retrieved_data,

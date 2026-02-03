@@ -93,19 +93,12 @@ class LLM:
 
     @modal.fastapi_endpoint(method="POST")
     def generate_stream(self, req: GenerateRequest):
-        """
-        Stream tokens as JSONL (newline-delimited JSON).
-
-        Returns application/x-ndjson with one JSON object per line:
-        {"delta": "token text"}
-        """
         from fastapi.responses import StreamingResponse
 
         prompt = req.prompt
         inputs = self.tokenizer(prompt, return_tensors="pt").to("cuda")
         input_len = inputs["input_ids"].shape[1]
 
-        # TextIteratorStreamer allows token-by-token iteration
         streamer = TextIteratorStreamer(
             self.tokenizer,
             skip_special_tokens=True,
@@ -122,7 +115,6 @@ class LLM:
             streamer=streamer,
         )
 
-        # Run generation in background thread
         thread = threading.Thread(target=self._generate_in_thread, args=(generation_kwargs,))
         thread.start()
 
@@ -138,7 +130,6 @@ class LLM:
         )
 
     def _generate_in_thread(self, generation_kwargs: dict):
-        """Helper to run generation in a thread for streaming."""
         with torch.no_grad():
             self.model.generate(**generation_kwargs)
 
