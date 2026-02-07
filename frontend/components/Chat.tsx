@@ -22,11 +22,6 @@ export function Chat() {
       {/* Header */}
       <header className="flex items-center justify-between px-4 py-3 border-b border-terminal-border bg-terminal-surface/50">
         <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1.5">
-            <span className="w-3 h-3 rounded-full bg-terminal-red"></span>
-            <span className="w-3 h-3 rounded-full bg-terminal-yellow"></span>
-            <span className="w-3 h-3 rounded-full bg-terminal-green"></span>
-          </div>
           <h1 className="text-lg font-semibold text-terminal-text">
             Fathom Financial Agent
           </h1>
@@ -61,22 +56,12 @@ export function Chat() {
                 <button
                   onClick={() =>
                     sendMessage(
-                      "What was Apple's gross margin percentage in FY2023?"
+                      "What percent of Ulta Beauty's total spend on stock repurchases for FY 2023 occurred in Q4 of FY2023?"
                     )
                   }
                   className="px-3 py-2 rounded-md bg-terminal-surface border border-terminal-border text-terminal-blue hover:border-terminal-blue/50 transition-colors text-left"
                 >
-                  What was Apple&apos;s gross margin percentage in FY2023?
-                </button>
-                <button
-                  onClick={() =>
-                    sendMessage(
-                      "Calculate Microsoft's year-over-year revenue growth from FY2022 to FY2023"
-                    )
-                  }
-                  className="px-3 py-2 rounded-md bg-terminal-surface border border-terminal-border text-terminal-blue hover:border-terminal-blue/50 transition-colors text-left"
-                >
-                  Calculate Microsoft&apos;s YoY revenue growth FY2022 to FY2023
+                  What percent of Ulta Beauty&apos;s total spend on stock repurchases for FY 2023 occurred in Q4 of FY2023?
                 </button>
                 <button
                   onClick={() =>
@@ -86,7 +71,17 @@ export function Chat() {
                   }
                   className="px-3 py-2 rounded-md bg-terminal-surface border border-terminal-border text-terminal-blue hover:border-terminal-blue/50 transition-colors text-left"
                 >
-                  What percentage of Amazon&apos;s revenue came from AWS in 2023?
+                  What percentage of Amazon&apos;s total revenue came from AWS in 2023?
+                </button>
+                <button
+                  onClick={() =>
+                    sendMessage(
+                      "What is the FY2018 - FY2020 3 year average of capex as a % of revenue for MGM Resorts?"
+                    )
+                  }
+                  className="px-3 py-2 rounded-md bg-terminal-surface border border-terminal-border text-terminal-blue hover:border-terminal-blue/50 transition-colors text-left"
+                >
+                  What is the FY2018 - FY2020 3 year average of capex as a % of revenue for MGM Resorts?
                 </button>
               </div>
             </div>
