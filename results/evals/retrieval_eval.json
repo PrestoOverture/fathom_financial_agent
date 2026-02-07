@@ -1,0 +1,476 @@
+{
+  "eval": "retrieval_recall_at_5",
+  "source_file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/retrieval_context.json",
+  "results": {
+    "total_questions": 15,
+    "hit_count": 5,
+    "recall_at_5": 0.3333333333333333,
+    "details": [
+      {
+        "id": "financebench_id_03473",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about Coca Cola's net income or total assets for FY2017, which are necessary to calculate the return on assets (ROA)."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding Coca Cola's FY2017 net income or average total assets, which are necessary to calculate the return on assets (ROA)."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk provides the total assets for Coca-Cola in FY2017 and FY2016, but it does not include the net income for FY2017, which is necessary to calculate the return on assets (ROA). Without the net income, the ROA cannot be determined."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about Coca Cola's net income or total assets for FY2017, which are necessary to calculate the return on assets (ROA)."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific figures for Coca Cola's FY2017 net income or average total assets, which are necessary to calculate the return on assets (ROA)."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_06655",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific numerical values for average accounts payable, FY2017 COGS, or change in inventory, which are necessary to calculate Amazon's FY2017 days payable outstanding (DPO)."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific information about Amazon's accounts payable, COGS, or inventory changes necessary to calculate the FY2017 days payable outstanding (DPO)."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding Amazon's accounts payable, COGS, or inventory changes necessary to calculate the days payable outstanding (DPO) for FY2017."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information related to Amazon's FY2017 days payable outstanding (DPO), average accounts payable, COGS, or changes in inventory."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about deferred tax assets and liabilities but does not include any data related to accounts payable, COGS, or inventory necessary to calculate Amazon's FY2017 days payable outstanding (DPO)."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00566",
+        "has_recall_at_5": true,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about Verizon's debt repayments and financing activities in 2022 but does not compare the debt levels between 2022 and 2021, which is necessary to determine if there was an increase in debt."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about Verizon's debt as of December 31, 2021, and details about asset-backed debt as of December 31, 2022, but it does not explicitly state whether the total debt has increased or decreased between 2021 and 2022."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about Verizon's debt levels as of December 31, 2022, but does not include any comparative data or figures from the 2021 fiscal period to determine if there was an increase in debt."
+          },
+          {
+            "rank": 4,
+            "verdict": "YES",
+            "rationale": "The chunk provides specific figures for Verizon's total debt at the end of 2022 ($150.6 billion) and 2021 ($150.9 billion), clearly indicating that the debt decreased between these two fiscal periods."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding Verizon's debt levels or changes in debt between 2022 and 2021."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00724",
+        "has_recall_at_5": true,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk mentions an analysis of worldwide revenues by geographic areas but does not provide specific information about the percentage drop in revenues for any geographic region."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific information about the geographic regions or the percentage drop in revenues for Q22023, which is necessary to answer the question."
+          },
+          {
+            "rank": 3,
+            "verdict": "YES",
+            "rationale": "The chunk provides specific information about the revenue decrease in emerging markets, including the percentage drop of 53%, which directly answers the question regarding the geographic region with the biggest drop in Q22023 year over year revenues."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific information about Pfizer's revenues by geographic region or any details regarding the percentage drop in Q22023 year over year revenues."
+          },
+          {
+            "rank": 5,
+            "verdict": "YES",
+            "rationale": "The chunk provides specific information about the revenue decrease in emerging markets, including the percentage drop of 45%, which directly answers the question regarding the geographic region with the biggest drop in Q22023 year over year revenues."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_03031",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific figures for Lockheed Martin's FY2021 net working capital, nor does it include the necessary balance sheet details to calculate it."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific figures for total current assets or total current liabilities, which are necessary to calculate net working capital."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific financial figures or details from the balance sheet necessary to calculate Lockheed Martin's FY2021 net working capital."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific financial figures or details from the balance sheet necessary to calculate Lockheed Martin's FY2021 net working capital."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any financial data regarding Lockheed Martin's FY2021 net working capital, total current assets, or total current liabilities."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_03849",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about capital expenditures and cash flows but does not include specific revenue figures or the necessary calculations to determine the capex as a percentage of revenue for the specified years."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific financial data or figures related to capital expenditures (capex) or revenue for MGM Resorts for FY2018 - FY2020, which are necessary to calculate the 3-year average of capex as a percentage of revenue."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific financial data regarding capital expenditures (capex) or revenue for MGM Resorts for the fiscal years 2018 to 2020, which are necessary to calculate the 3-year average of capex as a percentage of revenue."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about capital expenditures (capex) or revenue figures necessary to calculate the FY2018 - FY2020 3 year average of capex as a percentage of revenue for MGM Resorts."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific financial data or percentages related to capex or revenue for MGM Resorts for FY2018 - FY2020, which are necessary to calculate the requested average."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_06272",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific numerical values for total cash dividends paid or net income attributable to shareholders, which are necessary to calculate the dividend payout ratio."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific figures for Coca Cola's FY2022 dividend payout ratio, total cash dividends paid, or net income attributable to shareholders, which are necessary to answer the question."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific figures or data regarding Coca Cola's FY2022 dividend payout ratio, total cash dividends paid, or net income attributable to shareholders, which are necessary to answer the question."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information regarding Coca Cola's FY2022 dividend payout ratio, total cash dividends paid, or net income attributable to shareholders."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about consolidated net income but does not include the total cash dividends paid, which is necessary to calculate the dividend payout ratio."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00799",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information about AMCOR's quick ratio for FY2023 or FY2022, nor does it discuss any changes in the quick ratio between these fiscal years."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about AMCOR's quick ratio for FY2023 or FY2022, nor does it discuss any changes in liquidity ratios. Therefore, it cannot answer the question regarding the improvement or decline of the quick ratio."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about AMCOR's quick ratio for FY2023 or FY2022, nor does it discuss financial metrics relevant to the question."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about AMCOR's quick ratio or its changes between FY2023 and FY2022. It only discusses net sales figures."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about AMCOR's quick ratio for FY2023 or FY2022, nor does it discuss any financial metrics related to liquidity ratios. Therefore, it cannot be used to determine if the quick ratio has improved or declined."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00605",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk provides financial results for Ulta Beauty but does not include any information about stock repurchases or the percentage of total spend on stock repurchases for FY 2023."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding Ulta Beauty's stock repurchases or the specific percentages related to Q4 of FY2023."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information regarding Ulta Beauty's stock repurchases or the percentage of those repurchases that occurred in Q4 of FY2023."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about Ulta Beauty's stock repurchases or the percentage that occurred in Q4 of FY2023."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about Ulta Beauty's stock repurchases for FY 2023, specifically the percentage that occurred in Q4 of FY 2023."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_01911",
+        "has_recall_at_5": true,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk discusses the Interest Coverage Ratio in a general context and mentions a clause in a facility agreement, but it does not provide specific numerical values for MGM's FY2022 Adjusted EBIT or annual Interest Expense needed to calculate the ratio."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific numerical values or calculations related to MGM's interest coverage ratio, nor does it mention FY2022 Adjusted EBIT or annual Interest Expense."
+          },
+          {
+            "rank": 3,
+            "verdict": "YES",
+            "rationale": "The chunk provides the Interest Coverage Ratio for dates on and after 31 March 2022, which is 2.50:1.00. This is sufficient to answer the question regarding MGM's interest coverage ratio for FY2022."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information about MGM's FY2022 Adjusted EBIT or annual Interest Expense, which are necessary to calculate the interest coverage ratio for that specific year."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any numerical values or specific information regarding MGM's Adjusted EBIT or annual Interest Expense, which are necessary to calculate the interest coverage ratio."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00807",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide specific information about 3M's quick ratio for Q2 of FY2023 or any relevant details to assess its liquidity profile. It only mentions the company's strong balance sheet and liquidity in general terms."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about 3M's liquidity profile and financial condition but does not specifically mention the quick ratio for Q2 of FY2023 or its relevance in measuring liquidity."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide the quick ratio for Q2 of FY2023 or any specific information about 3M's liquidity profile based on that ratio. Without the quick ratio or relevant liquidity metrics, it is impossible to determine the health of 3M's liquidity."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about 3M's cash, cash equivalents, marketable securities, and net debt, but it does not include the quick ratio or any specific liquidity metrics necessary to assess the liquidity profile."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information about 3M's quick ratio for Q2 of FY2023 or any details regarding its liquidity profile. It mainly discusses the management's discussion and analysis without addressing the quick ratio or its relevance to liquidity."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00956",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk provides sales growth figures and trends but does not explicitly indicate whether JnJ is considered a high growth company based on industry standards or comparisons."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk provides details about JnJ's financial performance in different segments but does not explicitly indicate whether these financials classify the company as a high growth company. Additional context or metrics related to growth rates or comparisons to industry standards would be needed."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk only contains a reference to financial projections without any specific data or analysis regarding JnJ's FY2022 financials or growth metrics."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk provides details about Johnson & Johnson's business segments and accounting policies but does not include specific financial data or growth metrics necessary to determine if the company is considered a high growth company."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about cost increases and factors affecting sales but does not include specific financial metrics or growth indicators necessary to determine if JnJ's FY2022 financials reflect a high growth company."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00917",
+        "has_recall_at_5": true,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "YES",
+            "rationale": "The chunk provides detailed information about AMD's operating margin change for FY22, including the reasons for the decrease in gross margin and operating income, specifically mentioning the impact of the Xilinx acquisition. It also discusses the overall financial performance and revenue changes, which are relevant to understanding the operating margin."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information regarding the operating margin change for AMD as of FY22 or whether operating margin is a useful metric for the company."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about gross margin but does not address operating margin or its changes for AMD in FY22. It also does not discuss whether operating margin is a useful metric for the company."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding the operating margin change for AMD as of FY22 or whether operating margin is a useful metric for the company."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding the operating margin change for AMD as of FY22 or any discussion on the usefulness of operating margin as a metric for the company."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00464",
+        "has_recall_at_5": false,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk discusses risks related to government contracts and funding uncertainties but does not explicitly address whether Boeing's business is subject to cyclicality."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any specific information regarding the cyclicality of Boeing's business. It discusses accounting practices, goodwill assets, tax implications, and risks associated with their products, but does not address the cyclical nature of their business operations."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding the cyclicality of Boeing's business. It focuses on employee management, safety, competition, and other operational aspects without addressing the cyclical nature of the aerospace industry."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk does not provide any information regarding the cyclicality of Boeing's business. It discusses inventory management, technology investments, and foreign exchange impacts, but does not address whether Boeing's business is subject to cyclicality."
+          },
+          {
+            "rank": 5,
+            "verdict": "NO",
+            "rationale": "The chunk discusses various risks associated with Boeing's international sales, including political, economic, and regulatory factors, but it does not explicitly address whether Boeing's business is subject to cyclicality."
+          }
+        ]
+      },
+      {
+        "id": "financebench_id_00684",
+        "has_recall_at_5": true,
+        "chunk_results": [
+          {
+            "rank": 1,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about the gross profit and its percentage of sales, indicating a decrease in gross margin. However, it does not explicitly state whether AMCOR has an improving gross margin profile or if gross margin is a useful metric for the company."
+          },
+          {
+            "rank": 2,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about the financial performance of AMCOR in FY2023, including decreases in gross profit and adjusted EBIT, but it does not explicitly mention the gross margin profile or whether it is improving. Additionally, it does not address whether gross margin is a useful metric for the company."
+          },
+          {
+            "rank": 3,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about net sales and adjusted EBIT but does not mention gross margin or its trend. Therefore, it does not contain sufficient information to determine if AMCOR has an improving gross margin profile."
+          },
+          {
+            "rank": 4,
+            "verdict": "NO",
+            "rationale": "The chunk provides information about net sales and some cost factors but does not mention gross margin or its trend, making it insufficient to determine if AMCOR has an improving gross margin profile."
+          },
+          {
+            "rank": 5,
+            "verdict": "YES",
+            "rationale": "The chunk provides specific gross profit figures and gross profit margins for AMCOR in FY2023 and FY2022, allowing for a direct comparison to determine if the gross margin profile is improving or not."
+          }
+        ]
+      }
+    ]
+  }
+}

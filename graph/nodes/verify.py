@@ -29,7 +29,6 @@ NUM_WITH_MAG = re.compile(
 PCT = re.compile(r"(\d[\d,]*\.?\d*)\s*%")
 
 def normalize_operator(op_symbol: str) -> str:
-    """Normalize fancy unicode dashes to standard minus."""
     if op_symbol in ['–', '−']: 
         return '-'
     return op_symbol
@@ -57,10 +56,6 @@ def normalize_expr(expr: str) -> str:
     return expr
 
 def parse_rhs(rhs: str) -> Tuple[Optional[float], Optional[float]]:
-    """
-    Returns (rhs_as_fraction, rhs_as_percent) if rhs contains '%'.
-    Otherwise (rhs_value, None).
-    """
     rhs = rhs.strip()
     frac = clean_number(rhs)  # existing behavior: "29.8%" -> 0.298
     if frac is None:

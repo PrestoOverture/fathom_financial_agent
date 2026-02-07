@@ -35,7 +35,7 @@ def check_table_integrity():
     index = VectorStoreIndex.from_vector_store(vector_store=vector_store)
     retriever = index.as_retriever(similarity_top_k=5)
 
-    query = "Total gross sqaure feet at beginning of each quarter"
+    query = "Has Verizon increased its debt on balance sheet between 2022 and the 2021 fiscal period?"
     print(f"Querying: {query}")
     results = retriever.retrieve(query)
 

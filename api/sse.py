@@ -38,7 +38,6 @@ async def stream_graph_sse(
 
                     if node_name == "retrieve":
                         nodes = output.get("retrieved_nodes", [])
-                        # Build chunks with content for frontend display
                         chunks = [
                             {
                                 "doc_name": n.get("metadata", {}).get("doc_name", "Unknown"),

@@ -1,0 +1,397 @@
+{
+  "eval": "format_adherence",
+  "files": [
+    {
+      "file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/baseline_holdout_results_original.json",
+      "total": 15,
+      "valid": 0,
+      "invalid": 15,
+      "details": [
+        {
+          "id": "financebench_id_03473",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_06655",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00566",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00724",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_03031",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_03849",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_06272",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00799",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00605",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_01911",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00807",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00956",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00917",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00464",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00684",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        }
+      ]
+    },
+    {
+      "file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/finetuned_holdout_results_original.json",
+      "total": 15,
+      "valid": 7,
+      "invalid": 8,
+      "details": [
+        {
+          "id": "financebench_id_03473",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_06655",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00566",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00724",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_03031",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_03849",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_06272",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00799",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00605",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_01911",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00807",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00956",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00917",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00464",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00684",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        }
+      ]
+    },
+    {
+      "file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/baseline_holdout_results_llamaparse.json",
+      "total": 15,
+      "valid": 9,
+      "invalid": 6,
+      "details": [
+        {
+          "id": "financebench_id_03473",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_06655",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00566",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00724",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_03031",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_03849",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_06272",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00799",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00605",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_01911",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00807",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00956",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00917",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00464",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_00684",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        }
+      ]
+    },
+    {
+      "file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/finetuned_holdout_results_llamaparse.json",
+      "total": 15,
+      "valid": 13,
+      "invalid": 2,
+      "details": [
+        {
+          "id": "financebench_id_03473",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_06655",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00566",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00724",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_03031",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_03849",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_06272",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00799",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00605",
+          "reason_count": 0,
+          "answer_count": 0,
+          "is_valid": false
+        },
+        {
+          "id": "financebench_id_01911",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00807",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00956",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00917",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00464",
+          "reason_count": 1,
+          "answer_count": 1,
+          "is_valid": true
+        },
+        {
+          "id": "financebench_id_00684",
+          "reason_count": 1,
+          "answer_count": 0,
+          "is_valid": false
+        }
+      ]
+    }
+  ]
+}

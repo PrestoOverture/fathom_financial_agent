@@ -22,6 +22,17 @@ MODAL_STREAM_ENDPOINT = os.environ.get(
     "https://prestooverture--fathom-llama32-3b-llm-generate-stream.modal.run",
 )
 
+# base model non-streaming endpoint
+MODAL_LLM_BASE_ENDPOINT = os.environ.get(
+    "MODAL_LLM_BASE_ENDPOINT",
+    "https://prestooverture--fathom-llama32-3b-base-llm-generate.modal.run",
+)
+
+# base model token streaming endpoint (JSONL)
+MODAL_STREAM_BASE_ENDPOINT = os.environ.get(
+    "MODAL_STREAM_BASE_ENDPOINT",
+    "https://prestooverture--fathom-llama32-3b-base-llm-generate-stream.modal.run",
+)
 
 def extract_section(text: str, label: str) -> str:
     pattern = rf"{label}\s*:\s*(.*?)(?=\n\s*(?:Reasoning|Answer)\s*:|$)"
