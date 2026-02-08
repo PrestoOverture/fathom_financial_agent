@@ -11,28 +11,16 @@ from langgraph.config import get_stream_writer
 load_dotenv(override=True)
 
 # non-streaming endpoint
-MODAL_LLM_ENDPOINT = os.environ.get(
-    "MODAL_LLM_ENDPOINT",
-    "https://prestooverture--fathom-llama32-3b-llm-generate.modal.run",
-)
+MODAL_LLM_ENDPOINT = os.getenv("MODAL_LLM_ENDPOINT")
 
 # token streaming endpoint (JSONL)
-MODAL_STREAM_ENDPOINT = os.environ.get(
-    "MODAL_STREAM_ENDPOINT",
-    "https://prestooverture--fathom-llama32-3b-llm-generate-stream.modal.run",
-)
+MODAL_STREAM_ENDPOINT = os.getenv("MODAL_STREAM_ENDPOINT")
 
 # base model non-streaming endpoint
-MODAL_LLM_BASE_ENDPOINT = os.environ.get(
-    "MODAL_LLM_BASE_ENDPOINT",
-    "https://prestooverture--fathom-llama32-3b-base-llm-generate.modal.run",
-)
+MODAL_LLM_BASE_ENDPOINT = os.getenv("MODAL_LLM_BASE_ENDPOINT")
 
 # base model token streaming endpoint (JSONL)
-MODAL_STREAM_BASE_ENDPOINT = os.environ.get(
-    "MODAL_STREAM_BASE_ENDPOINT",
-    "https://prestooverture--fathom-llama32-3b-base-llm-generate-stream.modal.run",
-)
+MODAL_STREAM_BASE_ENDPOINT = os.getenv("MODAL_STREAM_BASE_ENDPOINT")
 
 def extract_section(text: str, label: str) -> str:
     pattern = rf"{label}\s*:\s*(.*?)(?=\n\s*(?:Reasoning|Answer)\s*:|$)"
