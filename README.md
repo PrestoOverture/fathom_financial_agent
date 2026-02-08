@@ -3,11 +3,10 @@
 > An AI agent that performs structured reasoning on complex financial tables in 10-K reports with production cost under 50¢. 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://fathomfinancialagent.vercel.app)
-[![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)]()
-[![Fine-tuned Llama 3.2](https://img.shields.io/badge/model-Llama%203.2%203B-orange)]()
+[![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)](https://www.langchain.com/langgraph)
+[![Fine-tuned Llama 3.2](https://img.shields.io/badge/model-Llama%203.2%203B-orange)](https://huggingface.co/PrestoOverture/fathom-llama-3b-merged)
 
-![Demo GIF](assets/demo.gif)
-<!-- TODO: Add screen recording of the system in action -->
+[![Demo video](images/UI.png)](images/example_recording.mp4)
 
 ---
 
@@ -36,34 +35,11 @@ TODO: Consider adding a concrete example showing a failed generic RAG response v
 
 ### Architecture
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────────────────────────┐
-│   Browser   │────▶│   Vercel    │────▶│           Render                │
-│  (Next.js)  │◀────│  (Frontend) │◀────│         (FastAPI)               │
-└─────────────┘ SSE └─────────────┘     └───────────┬─────────────────────┘
-                                                    │
-                                    ┌───────────────┼───────────────┐
-                                    ▼               ▼               ▼
-                              ┌──────────┐   ┌──────────┐   ┌──────────┐
-                              │   Neon   │   │  Modal   │   │ LangGraph│
-                              │ pgvector │   │  (GPU)   │   │ Workflow │
-                              └──────────┘   └──────────┘   └──────────┘
-                               Retrieval    Fine-tuned LLM   Orchestration
-```
-
-<!-- 
-TODO: Replace ASCII diagram with a proper image if desired
--->
+![Architecture](images/architecture.png)
 
 ### LangGraph Workflow
 
-```
-[User Query] → [Retrieve] → [Reason] → [Verify] → [Response]
-                   │            │          │
-                   ▼            ▼          ▼
-              Neon/pgvector  Llama 3.2   Math Check
-              (table-aware)  (fine-tuned) (tool-based)
-```
+![Workflow](images/workflow.png)
 
 ---
 
@@ -82,7 +58,7 @@ TODO: Fill in after running evaluation
 | Baseline (LlamaParse) | 9 / 15 | 60.0% |
 | Finetuned (LlamaParse) | 13 / 15 | 86.7% |
 
-**Correctness (GPT-4o-mini judge):** Is the final answer correct? (Results are based on shared vector store)
+**Correctness (LLM judge):** Is the final answer correct? (Results are based on shared vector store)
 
 | Run | Correct | Incorrect | Refused | Accuracy |
 | --- | --- | --- | --- | --- |
@@ -91,7 +67,7 @@ TODO: Fill in after running evaluation
 | Baseline (LlamaParse) | 4 | 9 | 2 | 26.7% |
 | Finetuned (LlamaParse) | 4 | 11 | 0 | 26.7% |
 
-**Retrieval Recall@5 (LlamaParse only):** At least one of the top-5 chunks was judged sufficient to answer the question.
+**Retrieval Recall@5 (LLM judge):** At least one of the top-5 chunks was judged sufficient to answer the question.
 
 - Hit count: 5 / 15  
 - Recall@5: **33.3%**
@@ -211,15 +187,17 @@ TODO: Expand these into the blog post
 ## Limitations & Future Work
 
 **Current Limitations:**
-- Single-document queries only (no cross-company comparisons)
-- Limited to 10-K annual reports
-- Verification loop catches arithmetic errors but not logical errors
+- Current retrieval strategy (similarity based) is too simple and thus cannot reflect the true model performance due to low recall. 
+- Limited to 10-K annual reports, or similar questions that require reasoning
+- Verification loop sometimes cannot identify the equation
+- Verification loop cannot catch logical errors
 
 **Future Improvements:**
-- Multi-document retrieval for comparative analysis
-- Support for 10-Q quarterly reports and 8-K filings
-- Fine-tuned embedding model for financial domain
+- Consider advanced RAG strategy, e.g., Agentic RAG
+- Consider having a fine-tuned embedding model for financial domain
 - Confidence scoring for answers
+- Use a MCP calculator to handle arithmetic errors
+- Start with frontier models, then reduce
 
 ---
 
