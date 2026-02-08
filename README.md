@@ -1,12 +1,12 @@
  # Fathom Financial Agent
 
-> An AI agent that performs structured reasoning on complex financial tables in 10-K reports with production cost under 50¢. 
+> An AI agent that performs structured reasoning on complex financial queries in 10-K reports with production cost under 50¢. 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://fathomfinancialagent.vercel.app)
 [![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)](https://www.langchain.com/langgraph)
 [![Fine-tuned Llama 3.2](https://img.shields.io/badge/model-Llama%203.2%203B-orange)](https://huggingface.co/PrestoOverture/fathom-llama-3b-merged)
 
-[![Demo video](images/UI.png)](https://github.com/user-attachments/assets/5c385f95-052a-42a4-b24c-d70c543efd3b)
+[![Demo video](images/UI.png)](https://github.com/user-attachments/assets/1d8fe672-ec4e-443c-91e5-a0067ae96357)
 
 ---
 
@@ -37,36 +37,6 @@ Generic RAG systems fail at financial analysis because text-based PDF parsers fl
 
 ![Workflow](images/workflow.png)
 
----
-
-## Results
-
-<!-- 
-TODO: Fill in after running evaluation
--->
-
-**Format Adherence:** Is the model following the correct reasoning format?
-
-| Run | Valid / Total | Rate |
-| --- | --- | --- |
-| Baseline (original) | 0 / 15 | 0.0% |
-| Finetuned (original) | 7 / 15 | 46.7% |
-| Baseline (LlamaParse) | 9 / 15 | 60.0% |
-| Finetuned (LlamaParse) | 13 / 15 | 86.7% |
-
-**Correctness (LLM judge):** Is the final answer correct? (Results are based on shared vector store)
-
-| Run | Correct | Incorrect | Refused | Accuracy |
-| --- | --- | --- | --- | --- |
-| Baseline (original) | 6 | 9 | 0 | 40.0% |
-| Finetuned (original) | 4 | 11 | 0 | 26.7% |
-| Baseline (LlamaParse) | 4 | 9 | 2 | 26.7% |
-| Finetuned (LlamaParse) | 4 | 11 | 0 | 26.7% |
-
-**Retrieval Recall@5 (LLM judge):** At least one of the top-5 chunks was judged sufficient to answer the question.
-
-- Hit count: 5 / 15  
-- Recall@5: **33.3%**
 ---
 
 ## Tech Stack
@@ -166,10 +136,42 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 
 ---
 
+## Results
+**Format Adherence:** Is the model following the correct reasoning format?
+
+| Run | Valid / Total | Rate |
+| --- | --- | --- |
+| Baseline (original) | 0 / 15 | 0.0% |
+| Finetuned (original) | 7 / 15 | 46.7% |
+| Baseline (LlamaParse) | 9 / 15 | 60.0% |
+| Finetuned (LlamaParse) | 13 / 15 | 86.7% |
+
+**Correctness (LLM judge):** Is the final answer correct? (Results are based on shared vector store)
+
+| Run | Correct | Incorrect | Refused | Accuracy |
+| --- | --- | --- | --- | --- |
+| Baseline (original) | 6 | 9 | 0 | 40.0% |
+| Finetuned (original) | 4 | 11 | 0 | 26.7% |
+| Baseline (LlamaParse) | 4 | 9 | 2 | 26.7% |
+| Finetuned (LlamaParse) | 4 | 11 | 0 | 26.7% |
+
+**Retrieval Recall@5 (LLM judge):** At least one of the top-5 chunks was judged sufficient to answer the question.
+
+- Hit count: 5 / 15  
+- Recall@5: **33.3%**
+
+### Result Analysis
+- Format adherence improved substantially after fine-tuning.
+- Model experienced alignment tax after being finetuned, thus resulting in reduced accuracy on the orginal oracle RAG.
+- Low recall indicates that the model is blind 67% of the time.
+- An accuracy of 26.7% means LlamaParse with table awareness is the way to go, because **GPT-4o-Turbo** only achieved 19% accuracy on a shared vector store in the Financebench paper.
+  
+---
+
 ## Limitations & Future Work
 
 **Current Limitations:**
-- Current retrieval strategy (similarity based) is too simple and thus cannot reflect the true model performance due to low recall. 
+- Current retrieval strategy (similarity based) is too simple and thus cannot reflect the true model performance due to low recall. Finding the correct context from 100-200 pages of financial form remains challenging. 
 - Limited to 10-K annual reports, or similar questions that require reasoning
 - Verification loop sometimes cannot identify the equation
 - Verification loop cannot catch logical errors
