@@ -6,17 +6,14 @@
 [![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)](https://www.langchain.com/langgraph)
 [![Fine-tuned Llama 3.2](https://img.shields.io/badge/model-Llama%203.2%203B-orange)](https://huggingface.co/PrestoOverture/fathom-llama-3b-merged)
 
-[![Demo video](images/UI.png)](images/example_recording.mp4)
+https://github.com/user-attachments/assets/5c385f95-052a-42a4-b24c-d70c543efd3b
+
 
 ---
 
 ## The Problem
 
 Generic RAG systems fail at financial analysis because text-based PDF parsers flatten financial tables into unstructured text, destroying row/column relationships. They retrieve text but cannot calculate derived metrics (e.g., "What was the YoY change in operating margin?"). This project aim to address both problems: LlamaParse preserves table structure during ingestion, and a fine-tuned Llama 3.2 3B model performs explicit step-by-step reasoning and calculation over the retrieved evidence.
-
-<!-- 
-TODO: Consider adding a concrete example showing a failed generic RAG response vs. Fathom's correct response
--->
 
 ---
 
@@ -167,20 +164,6 @@ When a user asks a question:
 ### 3. Streaming Response
 
 Results stream back to the user in real-time via SSE, with the reasoning trace shown in a collapsible panel.
-
----
-
-## Lessons Learned
-
-<!-- 
-TODO: Expand these into the blog post
--->
-
-1. **The Parameter Wall** — A 3B model can learn *how* to solve financial problems but lacks the internal capacity to reliably execute arithmetic. Solution: tool-augmented reasoning.
-
-2. **Distribution Shift Matters** — The RAG prompt structure must match the fine-tuning data structure exactly, or the model's "muscle memory" breaks.
-
-3. **Table Parsing is the Bottleneck** — Without LlamaParse, retrieval quality collapsed. Standard PDF parsers destroy the structure that makes financial tables meaningful.
 
 ---
 
