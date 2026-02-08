@@ -6,8 +6,7 @@
 [![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)](https://www.langchain.com/langgraph)
 [![Fine-tuned Llama 3.2](https://img.shields.io/badge/model-Llama%203.2%203B-orange)](https://huggingface.co/PrestoOverture/fathom-llama-3b-merged)
 
-https://github.com/user-attachments/assets/5c385f95-052a-42a4-b24c-d70c543efd3b
-
+[![Demo video](images/UI.png)](https://github.com/user-attachments/assets/5c385f95-052a-42a4-b24c-d70c543efd3b)
 
 ---
 
