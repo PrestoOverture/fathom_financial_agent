@@ -1,6 +1,6 @@
  # Fathom Financial Agent
 
-> An AI agent that performs structured reasoning on complex financial queries in 10-K reports with production cost under 50¢. 
+> An AI agent that performs structured reasoning on complex financial queries in 10-K reports with end-to-end cost under 50¢. 
 
 [![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://fathomfinancialagent.vercel.app)
 [![Built with LangGraph](https://img.shields.io/badge/orchestration-LangGraph-blue)](https://www.langchain.com/langgraph)
@@ -141,8 +141,8 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 
 | Run | Valid / Total | Rate |
 | --- | --- | --- |
-| Baseline (original) | 0 / 15 | 0.0% |
-| Finetuned (original) | 7 / 15 | 46.7% |
+| Baseline (oracle) | 0 / 15 | 0.0% |
+| Finetuned (oracle) | 7 / 15 | 46.7% |
 | Baseline (LlamaParse) | 9 / 15 | 60.0% |
 | Finetuned (LlamaParse) | 13 / 15 | 86.7% |
 
@@ -150,8 +150,8 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 
 | Run | Correct | Incorrect | Refused | Accuracy |
 | --- | --- | --- | --- | --- |
-| Baseline (original) | 6 | 9 | 0 | 40.0% |
-| Finetuned (original) | 4 | 11 | 0 | 26.7% |
+| Baseline (oracle) | 6 | 9 | 0 | 40.0% |
+| Finetuned (oracle) | 4 | 11 | 0 | 26.7% |
 | Baseline (LlamaParse) | 4 | 9 | 2 | 26.7% |
 | Finetuned (LlamaParse) | 4 | 11 | 0 | 26.7% |
 
