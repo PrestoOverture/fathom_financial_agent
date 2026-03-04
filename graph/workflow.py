@@ -2,7 +2,15 @@ from langgraph.graph import StateGraph, START, END
 from graph.nodes.retrieve import retrieve
 from graph.nodes.reason import reason
 from graph.state import AgentState
-from graph.nodes.verify import verify_math_node
+from graph.nodes.verify import has_math_equations, verify_math_node
+from typing import Literal
+
+
+def route_after_reason(state: AgentState) -> Literal["verify", "end"]:
+    reasoning_for_detection = state.reasoning_logs or state.raw_output or ""
+    if has_math_equations(reasoning_for_detection):
+        return "verify"
+    return "end"
 
 def create_graph():
     workflow = StateGraph(AgentState)
@@ -13,7 +21,11 @@ def create_graph():
 
     workflow.add_edge(START, "retrieve")
     workflow.add_edge("retrieve", "reason")
-    workflow.add_edge("reason", "verify")
+    workflow.add_conditional_edges(
+        "reason",
+        route_after_reason,
+        {"verify": "verify", "end": END},
+    )
     workflow.add_edge("verify", END)
     compiled_graph = workflow.compile()
     return compiled_graph

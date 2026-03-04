@@ -1,5 +1,5 @@
 import re
-from typing import Dict, Any, List, Optional, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 from graph.tools import clean_number, calculate
 from graph.state import AgentState
 
@@ -64,8 +64,11 @@ def parse_rhs(rhs: str) -> Tuple[Optional[float], Optional[float]]:
         return (frac, frac * 100.0)
     return (frac, None)
 
-def verify_general_equalities(reasoning: str, log: List[str], corrections: List[Dict[str, Any]]) -> bool:
+def verify_general_equalities(
+    reasoning: str, log: List[str], corrections: List[Dict[str, Any]]
+) -> Tuple[bool, bool]:
     found_any = False
+    has_error = False
 
     for raw_line in reasoning.splitlines():
         if "=" not in raw_line:
@@ -102,6 +105,7 @@ def verify_general_equalities(reasoning: str, log: List[str], corrections: List[
         if (diff / denom) < 0.01:
             log.append(f"Verified: {line.strip()}  (rhs as {best_kind})")
         else:
+            has_error = True
             log.append(
                 f"Math Error: '{line.strip()}'. Real: {calculated:,.4f}, Claimed: {best_val:,.4f}"
             )
@@ -111,7 +115,25 @@ def verify_general_equalities(reasoning: str, log: List[str], corrections: List[
                 "calculated_val": calculated
             })
 
-    return found_any
+    return found_any, has_error
+
+
+def has_math_equations(reasoning: str) -> bool:
+    if not reasoning:
+        return False
+
+    if EQUATION_PATTERN.search(reasoning):
+        return True
+
+    for raw_line in reasoning.splitlines():
+        if "=" not in raw_line:
+            continue
+
+        left, right = raw_line.split("=", 1)
+        if re.search(r"\d", left) and re.search(r"\d", right):
+            return True
+
+    return False
 
 def verify_reasoning(reasoning: str) -> Dict[str, Any]:
     log = []
@@ -168,7 +190,9 @@ def verify_reasoning(reasoning: str) -> Dict[str, Any]:
             })
 
     # fallback: handle "(A/B)*100 = C%" style lines
-    found_any = verify_general_equalities(reasoning, log, corrections) or found_any
+    stage_b_found_any, stage_b_has_error = verify_general_equalities(reasoning, log, corrections)
+    found_any = stage_b_found_any or found_any
+    has_error = has_error or stage_b_has_error
 
     if not found_any:
         log.append("No explicit math equations found to verify.")
@@ -179,8 +203,8 @@ def verify_reasoning(reasoning: str) -> Dict[str, Any]:
         "corrections": corrections
     }
 
-def verify_math_node(state: AgentState) -> Dict:
-    reasoning = state.reasoning_logs if state.reasoning_logs else ""
+def verify_math_node(state: AgentState) -> Dict[str, Any]:
+    reasoning = state.reasoning_logs or state.raw_output or ""
 
     if not reasoning:
         return {
@@ -214,4 +238,20 @@ if __name__ == "__main__":
     res = verify_reasoning(text_finance)
     assert res["arithmetic_errors_found"] is False
     print("Test 3 (Financial Syntax): PASS")
-    print(verify_reasoning("The calculation is: ($328.1 million / $1.1 billion) * 100 = 29.8%"))
+
+    text_stage_b_wrong = "The calculation is: (100/4)*100 = 10%"
+    res = verify_reasoning(text_stage_b_wrong)
+    assert res["arithmetic_errors_found"] is True
+    assert any("Math Error" in line for line in res["verification_log"])
+    print("Test 4 (Stage B Wrong): PASS")
+
+    text_stage_b_correct = "The calculation is: (328.1 million / 1.1 billion) * 100 = 29.8%"
+    res = verify_reasoning(text_stage_b_correct)
+    assert res["arithmetic_errors_found"] is False
+    assert any("Verified" in line for line in res["verification_log"])
+    print("Test 5 (Stage B Correct): PASS")
+
+    assert has_math_equations("We compute 100 + 200 = 300.") is True
+    assert has_math_equations("The calculation is: (100/4)*100 = 10%") is True
+    assert has_math_equations("No equations in this reasoning.") is False
+    print("Test 6 (Math Detection): PASS")

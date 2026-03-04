@@ -162,10 +162,10 @@ export function useSSEStream(): UseSSEStreamReturn {
             reasoning: event.reasoning_logs,
             answer: event.answer,
           });
-          setCurrentPhase("verifying");
         },
 
         onVerifyUpdate: (event) => {
+          setCurrentPhase("verifying");
           updateAssistant({
             verification: {
               hasErrors: event.arithmetic_errors_found,

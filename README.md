@@ -31,28 +31,43 @@ Generic RAG systems fail at financial analysis because text-based PDF parsers fl
 
 ### Architecture
 
-![Architecture](images/architecture.png)
+#### Data Pipeline
+
+```mermaid
+flowchart LR
+    FB["FinanceBench Dataset"] -->|filter + audit| D["Curated Reasoning Questions"]
+    D -->|Teacher Knowledge| T["Reasoning Traces"]
+    T -->|validate + split| TR["Train / Dev / Probe / Test"]
+    TR -->|LoRA| W["Fine-tuned Llama 3.2 3B"]
+    W -->|deploy| MO["Modal (Serverless GPU)"]
+
+    PDF["10-K PDFs"] -->|LlamaParse| MD["Structured Markdown"]
+    MD -->|embed + store| DB["Neon PostgreSQL + pgvector"]
+```
+
+#### Query Flow
+
+```mermaid
+flowchart LR
+    U["User (Next.js)"] -->|SSE Query| A["FastAPI"]
+    A -->|invoke| G["LangGraph Workflow"]
+    G -->|retrieve| DB["Neon PostgreSQL + pgvector"]
+    G -->|reason| M["Modal (Llama 3.2 3B)"]
+    G -->|verify| T["Python Math Tools"]
+    A -->|Token Stream| U
+```
 
 ### LangGraph Workflow
 
-![Workflow](images/workflow.png)
-
----
-
-## Tech Stack
-
-| Layer | Stack |
-|-------|------------|
-| Frontend | Next.js 14, Tailwind CSS, TypeScript |
-| Backend | FastAPI, Server-Sent Events |
-| Orchestration | LangGraph |
-| Vector Store | Neon (PostgreSQL + pgvector) |
-| Document Parsing | LlamaParse |
-| Model Inference | Modal (Serverless GPU) |
-| Fine-tuning | Unsloth, LoRA, Google Colab T4 |
-| Base Model | Llama 3.2 3B Instruct |
-| Teacher Model | GPT-4o |
-| Judge | GPT-4o-mini |
+```mermaid
+flowchart LR
+    S["START"] --> R["retrieve"]
+    R --> N["reason"]
+    N --> D{"has_math_equations?"}
+    D -- "yes" --> V["verify"]
+    D -- "no" --> E["END"]
+    V --> E
+```
 
 ---
 
@@ -89,7 +104,7 @@ fathom-financial-agent/
 
 ### Prerequisites
 
-- Python 3.10+
+- Python 3.13+
 - Node.js 18+
 - API keys: OpenAI, LlamaCloud, Modal, Neon
 
@@ -113,26 +128,6 @@ uvicorn api.main:app --reload
 # Run the frontend
 cd frontend && npm run dev
 ```
-
----
-
-## How It Works
-
-### 1. Document Ingestion
-
-PDFs are processed through LlamaParse, which uses vision models to reconstruct financial tables as structured Markdown. This preserves the row/column relationships that are critical for accurate retrieval.
-
-### 2. Query Processing
-
-When a user asks a question:
-
-1. **Retrieve** — Deterministic company/year resolution from the question text, metadata filtering via pgvector, wider candidate retrieval (top-15), and cross-encoder reranking (BAAI/bge-reranker-base) down to top-5 chunks. Cascading fallback handles edge cases (multi-year questions, missing year).
-2. **Reason** — The fine-tuned Llama 3.2 3B generates a structured reasoning trace with explicit calculation steps
-3. **Verify** — A Python-based math engine checks any arithmetic in the response against the stated inputs
-
-### 3. Streaming Response
-
-Results stream back to the user in real-time via SSE, with the reasoning trace shown in a collapsible panel.
 
 ---
 
@@ -173,20 +168,16 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
   
 ---
 
-## Limitations & Future Work
+## Limitations & Next Steps
 
-**Current Limitations:**
-- Within-document chunk relevance is the primary bottleneck (40% Recall@5). Metadata filtering solves cross-document confusion, but financial tables still don't rank high enough by embedding similarity + reranking.
-- The 3B finetuned model hallucinates arithmetic even when given correct context (e.g., ROA, NWC calculations).
-- Limited to 10-K annual reports and similar questions that require reasoning.
-- Verification loop sometimes cannot identify the equation or catch logical errors.
+**Design tradeoffs:**
+- **Small model by design.** A 3B parameter model keeps inference cost very low but trades off arithmetic reliability — the model learns *how* to reason but lacks the capacity to execute multi-step math consistently. The verify node catches some errors; a tool-use or larger model approach would close the gap.
+- **Embedding-based retrieval over financial tables.** General-purpose embeddings (`text-embedding-3-small`) rank prose higher than tabular data, so financial statements sometimes don't surface even when the correct document is identified. This is an inherent limitation of dense retrieval over structured content.
+- **Scoped to 10-K annual reports.** The system is purpose-built for SEC 10-K filings and FinanceBench-style reasoning questions — it does not generalize to other document types or open-domain financial QA.
 
-**Future Improvements:**
-- Chunking strategy: larger chunks or table-aware splitting to keep full financial statements together
-- Embedding model upgrade (`text-embedding-3-large`) or domain-specific fine-tuning
-- Stronger reasoning model or tool-augmented math (MCP calculator)
-- Confidence scoring for answers
-- Agentic RAG with query decomposition for multi-step calculations
+**Next experiments:**
+- Table-aware retrieval — section-level chunking or hybrid search features that target financial tables directly, since retrieval quality is the dominant blocker before model size
+- Agentic RAG with query decomposition for multi-step calculations that exceed single-pass reasoning
 
 ---
 
