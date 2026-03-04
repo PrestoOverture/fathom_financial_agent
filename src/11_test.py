@@ -9,7 +9,7 @@ from graph.workflow import create_graph
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 TEST_FILE = ROOT_DIR / "data" / "test" / "test.jsonl"
-OUTPUT_FILE = ROOT_DIR / "results" / "test_set" / "finetuned_holdout_results_llamaparse1.json"
+OUTPUT_FILE = ROOT_DIR / "results" / "test_set" / "finetuned_holdout_results_fixed_retrieval.json"
 
 
 def load_test_questions(path: Path) -> list[dict[str, Any]]:
@@ -46,7 +46,7 @@ async def run_eval() -> None:
                 "id": financebench_id,
                 "question": question,
                 "teacher_answer": teacher_answer,
-                "pred_answer": output.get("raw_output"),
+                "pred_answer": output.get("answer") or output.get("raw_output"),
             }
         )
 

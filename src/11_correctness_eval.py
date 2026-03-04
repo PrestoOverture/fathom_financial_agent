@@ -15,6 +15,7 @@ INPUT_FILES = [
     ROOT_DIR / "results" / "test_set" / "finetuned_holdout_results_original.json",
     ROOT_DIR / "results" / "test_set" / "baseline_holdout_results_llamaparse.json",
     ROOT_DIR / "results" / "test_set" / "finetuned_holdout_results_llamaparse.json",
+    ROOT_DIR / "results" / "test_set" / "finetuned_holdout_results_fixed_retrieval.json",
 ]
 OUTPUT_FILE = ROOT_DIR / "results" / "evals" / "correctness_eval.json"
 

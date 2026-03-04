@@ -18,12 +18,12 @@
         {
           "id": "financebench_id_06655",
           "verdict": "INCORRECT",
-          "rationale": "The model's calculated DPO of approximately 127.9 does not match the gold answer of 93.86."
+          "rationale": "The model calculated a DPO of approximately 127.9, which does not match the gold answer of 93.86."
         },
         {
           "id": "financebench_id_00566",
           "verdict": "CORRECT",
-          "rationale": "The model's answer matches the gold answer, confirming that Verizon's debt decreased."
+          "rationale": "The model's answer matches the gold answer regarding the decrease in Verizon's debt."
         },
         {
           "id": "financebench_id_00724",
@@ -43,7 +43,7 @@
         {
           "id": "financebench_id_06272",
           "verdict": "INCORRECT",
-          "rationale": "The calculated dividend payout ratio of 1.20 is incorrect; it should be 0.8 as per the gold answer."
+          "rationale": "The calculated dividend payout ratio of 1.20 is incorrect; it contradicts the gold answer of 0.8."
         },
         {
           "id": "financebench_id_00799",
@@ -78,7 +78,7 @@
         {
           "id": "financebench_id_00464",
           "verdict": "CORRECT",
-          "rationale": "The model's final answer aligns with the gold answer, confirming Boeing's business is subject to cyclicality."
+          "rationale": "The model's final answer aligns with the gold answer, confirming that Boeing's business is subject to cyclicality."
         },
         {
           "id": "financebench_id_00684",
@@ -104,17 +104,17 @@
         {
           "id": "financebench_id_06655",
           "verdict": "INCORRECT",
-          "rationale": "The model's calculated DPO of 89.73 does not match the gold answer of 93.86."
+          "rationale": "The model's final answer of 89.73 does not match the gold answer of 93.86."
         },
         {
           "id": "financebench_id_00566",
           "verdict": "INCORRECT",
-          "rationale": "The model's answer contradicts the gold answer, which states that Verizon's debt decreased."
+          "rationale": "The model's answer contradicts the gold answer, stating an increase in debt when the gold answer indicates a decrease."
         },
         {
           "id": "financebench_id_00724",
           "verdict": "INCORRECT",
-          "rationale": "The model's final answer does not match the gold answer, which states 'Developed Rest of the World' as the region with the biggest drop, while the model concludes otherwise."
+          "rationale": "The model output states that the largest decline was in Developed Europe, while the gold answer specifies Developed Rest of the World."
         },
         {
           "id": "financebench_id_03031",
@@ -124,7 +124,7 @@
         {
           "id": "financebench_id_03849",
           "verdict": "INCORRECT",
-          "rationale": "The model calculated 16.2% while the gold answer is 7.90%."
+          "rationale": "The model calculated 16.2%, which does not match the gold answer of 7.90%."
         },
         {
           "id": "financebench_id_06272",
@@ -149,17 +149,17 @@
         {
           "id": "financebench_id_00807",
           "verdict": "INCORRECT",
-          "rationale": "The model's calculated quick ratio is incorrect and contradicts the gold answer."
+          "rationale": "The model's calculated quick ratio of 44.8 is incorrect; the gold answer states the quick ratio is 0.96, indicating liquidity issues."
         },
         {
           "id": "financebench_id_00956",
           "verdict": "CORRECT",
-          "rationale": "The model's final answer aligns with the gold answer, stating that JnJ's FY2022 financials do not reflect high growth due to a total revenue change of +1.3%."
+          "rationale": "The model's final answer aligns with the gold answer, stating that JnJ's FY2022 financials do not reflect high growth."
         },
         {
           "id": "financebench_id_00917",
           "verdict": "INCORRECT",
-          "rationale": "The model's output does not match the gold answer, which directly attributes the decrease in operating income to amortization of intangible assets from the Xilinx acquisition."
+          "rationale": "The model's output does not match the gold answer, which directly attributes the decrease in operating income to amortization of intangible assets."
         },
         {
           "id": "financebench_id_00464",
@@ -169,7 +169,7 @@
         {
           "id": "financebench_id_00684",
           "verdict": "CORRECT",
-          "rationale": "The model's final answer aligns with the gold answer regarding the decline in gross margin."
+          "rationale": "The model's final answer matches the gold answer regarding the decline in gross margin."
         }
       ]
     },
@@ -195,7 +195,7 @@
         {
           "id": "financebench_id_00566",
           "verdict": "INCORRECT",
-          "rationale": "The model's final answer contradicts the gold answer."
+          "rationale": "The model's answer contradicts the gold answer."
         },
         {
           "id": "financebench_id_00724",
@@ -240,7 +240,7 @@
         {
           "id": "financebench_id_00956",
           "verdict": "CORRECT",
-          "rationale": "The model's conclusion aligns with the gold answer regarding JnJ's FY2022 financials not being indicative of a high growth company."
+          "rationale": "The model's output aligns with the gold answer stating that JnJ's FY2022 financials do not reflect high growth."
         },
         {
           "id": "financebench_id_00917",
@@ -271,7 +271,7 @@
         {
           "id": "financebench_id_03473",
           "verdict": "INCORRECT",
-          "rationale": "The model's answer of 0.0695 does not match the gold answer of 0.01."
+          "rationale": "The model's final answer of 0.0695 does not match the gold answer of 0.01."
         },
         {
           "id": "financebench_id_06655",
@@ -281,7 +281,7 @@
         {
           "id": "financebench_id_00566",
           "verdict": "CORRECT",
-          "rationale": "The model correctly states that Verizon's debt decreased, matching the gold answer."
+          "rationale": "The model's final answer matches the gold answer, confirming that Verizon's debt decreased."
         },
         {
           "id": "financebench_id_00724",
@@ -291,7 +291,7 @@
         {
           "id": "financebench_id_03031",
           "verdict": "INCORRECT",
-          "rationale": "The model's answer of $13,000 million does not match the gold answer of $5,818 million."
+          "rationale": "The model's answer of $13,000 does not match the gold answer of $5,818."
         },
         {
           "id": "financebench_id_03849",
@@ -306,12 +306,12 @@
         {
           "id": "financebench_id_00799",
           "verdict": "INCORRECT",
-          "rationale": "The model's calculated quick ratios are incorrect; the gold answer states an improvement from 0.67 to 0.69, while the model states an improvement from 0.390 to 0.418."
+          "rationale": "The model's final answer contradicts the gold answer regarding the quick ratio values."
         },
         {
           "id": "financebench_id_00605",
           "verdict": "INCORRECT",
-          "rationale": "The model output does not provide a specific percentage for Q4 of FY2023, which is required to match the gold answer of 36%."
+          "rationale": "The model output does not provide a specific percentage for Q4 of FY2023, which is necessary to evaluate correctness against the gold answer."
         },
         {
           "id": "financebench_id_01911",
@@ -321,7 +321,7 @@
         {
           "id": "financebench_id_00807",
           "verdict": "INCORRECT",
-          "rationale": "The model's final answer of 0.73 contradicts the gold answer of 0.96."
+          "rationale": "The model's final answer states a quick ratio of 0.73, which contradicts the gold answer of 0.96."
         },
         {
           "id": "financebench_id_00956",
@@ -336,12 +336,98 @@
         {
           "id": "financebench_id_00464",
           "verdict": "CORRECT",
-          "rationale": "The model's answer accurately reflects that Boeing's business is subject to cyclicality, aligning with the gold answer."
+          "rationale": "The model's answer accurately reflects the cyclicality of Boeing's business as stated in the gold answer."
         },
         {
           "id": "financebench_id_00684",
           "verdict": "INCORRECT",
           "rationale": "The model's answer states that AMCOR has an improving gross margin profile, which contradicts the gold answer indicating a decline in gross margins."
+        }
+      ]
+    },
+    {
+      "file": "/Users/kwang/projects/fathom_financial_agent/results/test_set/finetuned_holdout_results_fixed_retrieval.json",
+      "total": 15,
+      "counts": {
+        "CORRECT": 4,
+        "INCORRECT": 11,
+        "REFUSED": 0
+      },
+      "details": [
+        {
+          "id": "financebench_id_03473",
+          "verdict": "INCORRECT",
+          "rationale": "Model's answer of 1.42% does not match the gold answer of 0.01."
+        },
+        {
+          "id": "financebench_id_06655",
+          "verdict": "INCORRECT",
+          "rationale": "The model's answer of 102.86 days does not match the gold answer of 93.86 days."
+        },
+        {
+          "id": "financebench_id_00566",
+          "verdict": "CORRECT",
+          "rationale": "The model's output correctly states that Verizon's debt decreased, matching the gold answer."
+        },
+        {
+          "id": "financebench_id_00724",
+          "verdict": "INCORRECT",
+          "rationale": "The model's answer does not match the gold answer."
+        },
+        {
+          "id": "financebench_id_03031",
+          "verdict": "INCORRECT",
+          "rationale": "The model's answer of $4.8 billion does not match the gold answer of $5,818.00 million."
+        },
+        {
+          "id": "financebench_id_03849",
+          "verdict": "INCORRECT",
+          "rationale": "The model's answer of 1.0% does not match the gold answer of 7.90%."
+        },
+        {
+          "id": "financebench_id_06272",
+          "verdict": "INCORRECT",
+          "rationale": "The model's output of 55.08% does not match the gold answer of 0.8."
+        },
+        {
+          "id": "financebench_id_00799",
+          "verdict": "CORRECT",
+          "rationale": "The model's answer matches the gold answer regarding the improvement of the quick ratio."
+        },
+        {
+          "id": "financebench_id_00605",
+          "verdict": "INCORRECT",
+          "rationale": "The model's answer of 10.2% contradicts the gold answer of 36%."
+        },
+        {
+          "id": "financebench_id_01911",
+          "verdict": "INCORRECT",
+          "rationale": "The model's output contradicts the gold answer, as it provides a positive ratio despite adjusted EBIT being negative."
+        },
+        {
+          "id": "financebench_id_00807",
+          "verdict": "INCORRECT",
+          "rationale": "The model incorrectly states that the quick ratio is not relevant, while the gold answer indicates it needs improvement."
+        },
+        {
+          "id": "financebench_id_00956",
+          "verdict": "CORRECT",
+          "rationale": "The model's answer aligns with the gold answer regarding JnJ's FY2022 financials not being indicative of a high growth company."
+        },
+        {
+          "id": "financebench_id_00917",
+          "verdict": "INCORRECT",
+          "rationale": "The model incorrectly states that the operating margin increased, while the gold answer indicates a decrease due to amortization from the Xilinx acquisition."
+        },
+        {
+          "id": "financebench_id_00464",
+          "verdict": "CORRECT",
+          "rationale": "The model's answer matches the gold answer."
+        },
+        {
+          "id": "financebench_id_00684",
+          "verdict": "INCORRECT",
+          "rationale": "The model states that gross margin is useful for AMCOR, contradicting the gold answer which implies it is not improving."
         }
       ]
     }

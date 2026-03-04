@@ -82,7 +82,7 @@ def ingest_to_postgres(documents: list[Document]):
     print("Ingestion done!")
 
 if __name__ == "__main__":
-    test_file = PDF_DIR / "VERIZON_2022_10K.pdf"
+    test_file = PDF_DIR / "BOEING_2022_10K.pdf"
 
     if test_file.exists():
         docs = parse_pdf(test_file)

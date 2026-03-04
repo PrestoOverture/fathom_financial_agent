@@ -1,0 +1,92 @@
+[
+  {
+    "id": "financebench_id_03473",
+    "question": "What is the FY2017 return on assets (ROA) for Coca Cola? ROA is defined as: FY2017 net income / (average total assets between FY2016 and FY2017). Round your answer to two decimal places. Give a response to the question by relying on the details shown in the balance sheet and the P&L statement.",
+    "teacher_answer": "0.01",
+    "pred_answer": "1.42%"
+  },
+  {
+    "id": "financebench_id_06655",
+    "question": "What is Amazon's FY2017 days payable outstanding (DPO)? DPO is defined as: 365 * (average accounts payable between FY2016 and FY2017) / (FY2017 COGS + change in inventory between FY2016 and FY2017). Round your answer to two decimal places. Address the question by using the line items and information shown within the balance sheet and the P&L statement.",
+    "teacher_answer": "93.86",
+    "pred_answer": "102.86 days."
+  },
+  {
+    "id": "financebench_id_00566",
+    "question": "Has Verizon increased its debt on balance sheet between 2022 and the 2021 fiscal period?",
+    "teacher_answer": "No. Verizon's debt decreased by $229 million.",
+    "pred_answer": " Reasoning:\n     1. The question is asking about the change in Verizon's debt on balance sheet between 2022 and the 2021 fiscal period.\n     2. The context provided is Verizon's 2022 Annual Report on Form 10-K.\n     3. The relevant information is in the \"Cash Flows Provided By (Used In) Financing Activities\" section.\n     4. The question is asking about the increase in debt on balance sheet.\n     5. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     6. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher average interest rates and higher average debt balances; partially offset by an increase in capitalized interest costs as a result of a full year of capitalized interest on C-Band licenses in 2022 compared to a partial year in 2021.\"\n     7. The relevant information is in the \"Average debt outstanding (1) (3) $151,226 $147,035\" and \"Effective interest rate (2) (3) 3.7 % 3.6 %\".\n     8. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     9. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher average interest rates and higher average debt balances; partially offset by an increase in capitalized interest costs as a result of a full year of capitalized interest on C-Band licenses in 2022 compared to a partial year in 2021.\"\n     10. The relevant information is in the \"Average debt outstanding (1) (3) $151,226 $147,035\" and \"Effective interest rate (2) (3) 3.7 % 3.6 %\".\n     11. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     12. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher average interest rates and higher average debt balances; partially offset by an increase in capitalized interest costs as a result of a full year of capitalized interest on C-Band licenses in 2022 compared to a partial year in 2021.\"\n     13. The relevant information is in the \"Average debt outstanding (1) (3) $151,226 $147,035\" and \"Effective interest rate (2) (3) 3.7 % 3.6 %\".\n     14. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     15. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher average interest rates and higher average debt balances; partially offset by an increase in capitalized interest costs as a result of a full year of capitalized interest on C-Band licenses in 2022 compared to a partial year in 2021.\"\n     16. The relevant information is in the \"Average debt outstanding (1) (3) $151,226 $147,035\" and \"Effective interest rate (2) (3) 3.7 % 3.6 %\".\n     17. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     18. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher average interest rates and higher average debt balances; partially offset by an increase in capitalized interest costs as a result of a full year of capitalized interest on C-Band licenses in 2022 compared to a partial year in 2021.\"\n     19. The relevant information is in the \"Average debt outstanding (1) (3) $151,226 $147,035\" and \"Effective interest rate (2) (3) 3.7 % 3.6 %\".\n     20. The relevant information is in the \"Proceeds from and Repayments, Redemptions, and Repurchases of Long-Term Borrowings\" section.\n     21. The relevant information is in the \"Total interest expense increased during 2022 compared to 2021 primarily due to an increase in interest costs due to a combination of higher"
+  },
+  {
+    "id": "financebench_id_00724",
+    "question": "For Pfizer, which geographic region had the biggest drop in Q22023 year over year revenues (on a percentage basis)?",
+    "teacher_answer": "Developed Rest of the World",
+    "pred_answer": "Developed Europe."
+  },
+  {
+    "id": "financebench_id_03031",
+    "question": "What is Lockheed Martin's FY2021 net working capital? Define net working capital as total current assets less total current liabilities. Answer in USD millions. Respond to the question by assuming the perspective of an investment analyst who can only use the details shown within the balance sheet.",
+    "teacher_answer": "$5,818.00",
+    "pred_answer": "$4.8 billion."
+  },
+  {
+    "id": "financebench_id_03849",
+    "question": "What is the FY2018 - FY2020 3 year average of capex as a % of revenue for MGM Resorts? Answer in units of percents and round to one decimal place. Please utilize information provided primarily within the statement of cash flows and the statement of income.",
+    "teacher_answer": "7.90%",
+    "pred_answer": "1.0%"
+  },
+  {
+    "id": "financebench_id_06272",
+    "question": "What is Coca Cola's FY2022 dividend payout ratio (using total cash dividends paid and net income attributable to shareholders)? Round answer to two decimal places. Answer the question asked by assuming you only have access to information clearly displayed in the cash flow statement and the income statement.",
+    "teacher_answer": "0.8",
+    "pred_answer": "55.08%"
+  },
+  {
+    "id": "financebench_id_00799",
+    "question": "Has AMCOR's quick ratio improved or declined between FY2023 and FY2022? If the quick ratio is not something that a financial analyst would ask about a company like this, then state that and explain why.",
+    "teacher_answer": "The quick ratio has slightly improved from 0.67 times to 0.69 times between FY 2023 and FY 2022.(3.4% jump)",
+    "pred_answer": "Answer:"
+  },
+  {
+    "id": "financebench_id_00605",
+    "question": "What percent of Ulta Beauty's total spend on stock repurchases for FY 2023 occurred in Q4 of FY2023?",
+    "teacher_answer": "36%. The answer here assumes FY2023 refers to the 12 months ended on January 28, 2023 (although the company refers to this period as its fiscal 2022.",
+    "pred_answer": "Answer:\n10.2%"
+  },
+  {
+    "id": "financebench_id_01911",
+    "question": "What was MGM's interest coverage ratio using FY2022 Adjusted EBIT as the numerator and annual Interest Expense as the denominator?",
+    "teacher_answer": "As adjusted EBIT is negative, coverage ratio is zero",
+    "pred_answer": "3.45"
+  },
+  {
+    "id": "financebench_id_00807",
+    "question": "Does 3M have a reasonably healthy liquidity profile based on its quick ratio for Q2 of FY2023? If the quick ratio is not relevant to measure liquidity, please state that and explain why.",
+    "teacher_answer": "No. The quick ratio for 3M was 0.96 by Jun'23 close, which needs a bit of an improvement to touch the 1x mark",
+    "pred_answer": "Answer:\n        3M has a reasonably healthy liquidity profile based on its cash and cash equivalents. The quick ratio is not directly calculated and is not relevant to measure liquidity in this context. The relevant liquidity measure is the cash and cash equivalents."
+  },
+  {
+    "id": "financebench_id_00956",
+    "question": "Are JnJ's FY2022 financials that of a high growth company?",
+    "teacher_answer": "No, JnJ's FY2022 financials are not of a high growth company as sales grew by 1.3% in FY2022.",
+    "pred_answer": "Answer:\n     No, JnJ's FY2022 financials are not that of a high growth company. The growth rates of JnJ's sales and income before tax have slowed down in FY2022 compared to the previous year."
+  },
+  {
+    "id": "financebench_id_00917",
+    "question": "What drove operating margin change as of the FY22 for AMD? If operating margin is not a useful metric for a company like this, then please state that and explain why.",
+    "teacher_answer": "The decrease in AMD's operating income was primarily driven by amortization of intangible assets associated with the Xilinx acquisition",
+    "pred_answer": "Reasoning:\n        1. The question asks about the change in operating margin for AMD as of FY22. To answer this question, we need to analyze the financial statements provided in the context.\n        2. The context provides the financial performance data for the year 2022, with the following columns: Net revenue, Operating income.\n        3. We can see that the operating income is $2,247 million, and the net revenue is $4,612 million.\n        4. To calculate the operating margin, we need to divide the operating income by the net revenue and multiply by 100.\n        5. Operating margin = (Operating income / Net revenue) * 100 = ($2,247 / $4,612) * 100 = 48.8%.\n        6. The question asks about the change in operating margin as of FY22. To answer this question, we need to compare the operating margin of FY22 with the previous year.\n        7. However, the context does not provide the operating margin for FY21. Therefore, we cannot calculate the change in operating margin.\n        8. But we can see that the operating margin for FY22 is 48.8%, which is higher than the operating margin for FY21.\n        9. Therefore, the operating margin change as of FY22 is an increase of 0.8 percentage points compared to FY21."
+  },
+  {
+    "id": "financebench_id_00464",
+    "question": "Is Boeing's business subject to cyclicality?",
+    "teacher_answer": "Yes, Boeing's business is subject to cyclicality due to its exposure to the airline industry which is a cyclical industry.",
+    "pred_answer": "Yes, Boeing's business is subject to cyclicality."
+  },
+  {
+    "id": "financebench_id_00684",
+    "question": "Does AMCOR have an improving gross margin profile as of FY2023? If gross margin is not a useful metric for a company like this, then state that and explain why.",
+    "teacher_answer": "No. For AMCOR there has been a slight decline in gross margins by 0.8%.",
+    "pred_answer": "Reasoning:\n        1. The context provided shows the gross profit and gross margin for AMCOR in fiscal year 2023 and fiscal year 2022.\n2. The gross margin for fiscal year 2023 is 18.5%, compared to 19.4% in fiscal year 2022.\n3. The gross margin decreased by 0.9 percentage points in fiscal year 2023, compared to fiscal year 2022.\n4. The gross margin is a useful metric for a company like AMCOR, as it reflects the profitability of its products and services."
+  }
+]

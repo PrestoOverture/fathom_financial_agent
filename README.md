@@ -126,7 +126,7 @@ PDFs are processed through LlamaParse, which uses vision models to reconstruct f
 
 When a user asks a question:
 
-1. **Retrieve** — Semantic search over pgvector finds relevant chunks, prioritizing table nodes
+1. **Retrieve** — Deterministic company/year resolution from the question text, metadata filtering via pgvector, wider candidate retrieval (top-15), and cross-encoder reranking (BAAI/bge-reranker-base) down to top-5 chunks. Cascading fallback handles edge cases (multi-year questions, missing year).
 2. **Reason** — The fine-tuned Llama 3.2 3B generates a structured reasoning trace with explicit calculation steps
 3. **Verify** — A Python-based math engine checks any arithmetic in the response against the stated inputs
 
@@ -146,7 +146,7 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 | Baseline (LlamaParse) | 9 / 15 | 60.0% |
 | Finetuned (LlamaParse) | 13 / 15 | 86.7% |
 
-**Correctness (LLM judge):** Is the final answer correct? (Results are based on shared vector store)
+**Correctness (LLM judge):** Is the final answer correct?
 
 | Run | Correct | Incorrect | Refused | Accuracy |
 | --- | --- | --- | --- | --- |
@@ -154,16 +154,21 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 | Finetuned (oracle) | 4 | 11 | 0 | 26.7% |
 | Baseline (LlamaParse) | 4 | 9 | 2 | 26.7% |
 | Finetuned (LlamaParse) | 4 | 11 | 0 | 26.7% |
+| Finetuned (fixed retrieval) | 4 | 11 | 0 | 26.7% |
 
-**Retrieval Recall@5 (LLM judge):** At least one of the top-5 chunks was judged sufficient to answer the question.
+**Retrieval Recall@5 — Ablation Study:**
 
-- Hit count: 5 / 15  
-- Recall@5: **33.3%**
+| Stage | Config | Recall@5 |
+|-------|--------|----------|
+| Baseline | Pure vector similarity, top_k=5 | 33.3% |
+| + Metadata filtering | Company/year filter, top_k=5 | 26.7% |
+| + Wider window | Company/year filter, top_k=15 | 26.7% |
+| + Reranker | Company/year filter, top_k=15, bge-reranker-base | **40.0%** |
 
 ### Result Analysis
-- Format adherence improved substantially after fine-tuning.
-- Model experienced alignment tax after being finetuned, thus resulting in reduced accuracy on the orginal oracle RAG.
-- Low recall indicates that the model is blind 67% of the time.
+- Format adherence improved substantially after fine-tuning (0% to 86.7%).
+- Model experienced alignment tax after being finetuned, resulting in reduced accuracy on the original oracle RAG.
+- Metadata filtering correctly narrows to the right document (13/15) but within-document chunk relevance remains the bottleneck. The cross-encoder reranker provides the only measurable lift (+6.7% over baseline).
 - An accuracy of 26.7% means LlamaParse with table awareness is the way to go, because **GPT-4o-Turbo** only achieved 19% accuracy on a shared vector store in the Financebench paper.
   
 ---
@@ -171,17 +176,17 @@ Results stream back to the user in real-time via SSE, with the reasoning trace s
 ## Limitations & Future Work
 
 **Current Limitations:**
-- Current retrieval strategy (similarity based) is too simple and thus cannot reflect the true model performance due to low recall. Finding the correct context from 100-200 pages of financial form remains challenging. 
-- Limited to 10-K annual reports, or similar questions that require reasoning
-- Verification loop sometimes cannot identify the equation
-- Verification loop cannot catch logical errors
+- Within-document chunk relevance is the primary bottleneck (40% Recall@5). Metadata filtering solves cross-document confusion, but financial tables still don't rank high enough by embedding similarity + reranking.
+- The 3B finetuned model hallucinates arithmetic even when given correct context (e.g., ROA, NWC calculations).
+- Limited to 10-K annual reports and similar questions that require reasoning.
+- Verification loop sometimes cannot identify the equation or catch logical errors.
 
 **Future Improvements:**
-- Consider advanced RAG strategy, e.g., Agentic RAG
-- Consider having a fine-tuned embedding model for financial domain
+- Chunking strategy: larger chunks or table-aware splitting to keep full financial statements together
+- Embedding model upgrade (`text-embedding-3-large`) or domain-specific fine-tuning
+- Stronger reasoning model or tool-augmented math (MCP calculator)
 - Confidence scoring for answers
-- Use a MCP calculator to handle arithmetic errors
-- Start with frontier models, then reduce
+- Agentic RAG with query decomposition for multi-step calculations
 
 ---
 
